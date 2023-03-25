@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 async function extractData(){
 
@@ -96,11 +97,29 @@ async function extractData(){
 
     });
 
-    console.log("Repositeries: ",all_repos);
+    // console.log("Repositeries: ",all_repos);
+
+    var done = (error) => {
+        if(error){
+            console.error(error);
+            return;
+        }
+    }
+    var JSON_Data = JSON.stringify(all_repos,null,2);
+
+    fs.writeFile('Data.json',JSON_Data,done)
+    console.log(JSON_Data);
+
   
+
     //Close Browser
     await browser.close();
 }
 
-//Execute Func
 extractData();
+
+
+
+    
+
+
