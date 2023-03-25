@@ -102,5 +102,5 @@ async function extractData(){
     await browser.close();
 }
 
-//Execute
+//Execute Func
 extractData();
