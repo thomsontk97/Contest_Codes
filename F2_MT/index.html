@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font End -->
+  </head>
+  <body>
+    <div class="root-container">
+      <!-- Title -->
+      <header>
+        <div id="title">Student Management CRUD</div>
+      </header>
+      <!-- Inputs -->
+      <div>
+        <form class="input-container">
+          <input
+            type="text"
+            id="name"
+            placeholder="Name"
+            class="input-box"
+            required
+          />
+          <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            class="input-box"
+            required
+          />
+          <input
+            type="number"
+            id="gpa"
+            placeholder="GPA"
+            class="input-box"
+            required
+          />
+          <input
+            type="number"
+            id="age"
+            placeholder="Age"
+            class="input-box"
+            required
+          />
+          <input
+            type="text"
+            id="degree"
+            placeholder="Degree"
+            class="input-box"
+            required
+          />
+          <br />
+          <button type="submit" id="btn">Add Student</button>
+        </form>
+      </div>
+      <!-- Button -->
+      <!-- <button type="submit" id="btn">Add Student</button> -->
+      <!-- Search Box -->
+      <input
+        type="text"
+        id="search"
+        placeholder="Search by Name, Email or Degree"
+        onkeyup="tableSearch()"
+      />
+      <!-- Table -->
+      <table id="table">
+        <thead>
+          <td>ID</td>
+          <td>Student Name</td>
+          <td>Email</td>
+          <td>Age</td>
+          <td>GPA</td>
+          <td>Degree</td>
+        </thead>
+        <tbody id="myTable"></tbody>
+      </table>
+    </div>
+    <!-- <div id="table-data"></div> -->
+
+    <script src="./script.js"></script>
+  </body>
+</html>
