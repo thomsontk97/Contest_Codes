@@ -1,6 +1,6 @@
 
 // let formData = [];
-var i = 1;
+
 
 const addForm = (ev) =>{
     ev.preventDefault();
