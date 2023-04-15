@@ -1,21 +1,31 @@
 
 
 var i=1;
+var formData =[{n:name,pro:profession,a:age}];
 
 document.getElementById("btn").addEventListener('click', (ev) => {
     ev.preventDefault;
 
+   
+
     var name = document.getElementById("name").value;
     var profession = document.getElementById("profession").value;
     var age = document.getElementById("age").value;
+
 
     if(name== "" || profession== "" || age== "" ){
         document.getElementById("error-notif").style.display="block"; 
         document.getElementById("success-notif").style.display="none";
     }else{
         document.getElementById("success-notif").style.display="block";
+        setTimeout(() =>{
+            document.getElementById("success-notif").style.display="none";
+        },3000)
         document.getElementById("error-notif").style.display="none"; 
         document.getElementById("no-emp").style.display="none";
+
+                formData.push({Name:name,pro:profession,a:age});
+                console.log(formData);
 
     //     var emp = document.getElementById("emp-list");
     //     emp.innerHTML += 
@@ -43,6 +53,7 @@ document.getElementById("btn").addEventListener('click', (ev) => {
     delBtn.style.cursor = "pointer";
     delBtn.addEventListener("click", () => {
         document.getElementById("emp-list").removeChild(list_item);
+        i--;
         delBtn.style.display = "none";
     })
 
