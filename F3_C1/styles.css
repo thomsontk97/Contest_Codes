@@ -59,3 +59,23 @@ label{
     color:grey;
     margin:35px;
 }
+
+#error-notif{
+    color:red;
+    display: none;
+    margin:35px;
+    font-size: 18px;
+}
+#success-notif{
+    margin:35px;
+    font-size: 18px;
+    color:green;
+    display: none;
+    
+}
+
+#emp-list{
+
+    margin:35px;
+    font-size: 18px;
+}
