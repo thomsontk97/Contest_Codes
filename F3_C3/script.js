@@ -49,8 +49,9 @@ function signUp(ev){
         ev.preventDefault();
     }else if(passConfirm != password){
         alert("Passwords dont match");
-        error.style.display = "none";
         ev.preventDefault();
+        error.style.display = "none";
+       
     } else{
         setTimeout((()=>{
             document.getElementById('profile-page').style.display ="flex";
