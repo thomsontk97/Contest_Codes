@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SignUp-Login</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="head" id="title">Header</div>
+      <div class="links">
+        <div id="sign-up" class="head">SignUp</div>
+        <div id="profile" class="head">Profile</div>
+      </div>
+    </header>
+    <!-- Sign Up -->
+    <div id="main">
+      <div class="signup-box">
+        <h1>Sign Up</h1>
+
+        <form id="form-id">
+          <input
+            type="text"
+            id="username"
+            placeholder="Full Name"
+            class="inputs"
+          />
+          <input type="email" class="inputs" id="email" placeholder="Email" />
+          <input
+            type="password"
+            class="inputs"
+            id="password"
+            placeholder="Password"
+          />
+          <input
+            type="password"
+            class="inputs"
+            id="pass-confirm"
+            placeholder="Confirm Password"
+          />
+          <div id="error">Error : All the fields are mandatory</div>
+          <div id="success">Successfully Signed Up!</div>
+          <button id="btn-signup" class="btn" type="submit">Signup</button>
+        </form>
+      </div>
+    </div>
+    <!-- Profile -->
+    <div id="profile-page">
+      <h1>Profile</h1>
+      <div class="pro-items" id="pro-name"></div>
+      <div class="pro-items" id="pro-email"></div>
+      <div class="pro-items" id="pro-password"></div>
+
+      <button class="btn" id="btn-logout">Log Out</button>
+    </div>
+    <!-- Script src -->
+    <script src="./script.js"></script>
+  </body>
+</html>
