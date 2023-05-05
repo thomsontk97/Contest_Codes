@@ -1,40 +1,75 @@
-var iP;
+// var geo;
+// var iP;
+var msg;
+var po;
+//
+async function getIpFromAPI() {
+  document.getElementById("loader-container").style.display = "flex";
+  console.log("Fetching Data...");
 
-//----------------------------------------------------------------
-//Ip Address
-fetch("https://api.ipify.org?format=json")
-  .then((res) => res.json())
-  .then((data) => {
+  try {
+    const response = await fetch("https://api.ipify.org?format=json");
+    var data = await response.json();
     localStorage.setItem("IP", JSON.stringify(data.ip));
-  });
-
-iP = JSON.parse(localStorage.getItem("IP"));
-console.log("IP:", iP);
-
-//------------------------------------------------------------------------------------------------------------------------
-// get geo details
-fetch(`https://ipinfo.io/${iP}?token=4b5ee51896ec8c`)
-  .then((res) => res.json())
-  .then((data) => {
+    // alert("IP Added to Local Storage");
+    if (data) {
+      console.log("IP", data.ip);
+      getGeoFromAPI(data.ip);
+    }
+  } catch (e) {
+    console.log("Error--", e);
+  }
+}
+//----------------------------------------------------------------
+//
+async function getGeoFromAPI(iP) {
+  try {
+    const response = await fetch(
+      `https://ipinfo.io/${iP}?token=4b5ee51896ec8c`
+    );
+    var data = await response.json();
     localStorage.setItem("Geo", JSON.stringify(data));
-  });
-
-var geo = JSON.parse(localStorage.getItem("Geo"));
-console.log(geo);
-
-//----------------------------------------------------------
-//pincodes
-
-fetch(`https://api.postalpincode.in/pincode/${geo.postal}`)
-  .then((res) => res.json())
-  .then((data) => {
-    console.log("Postal:", data[0].PostOffice);
+    // alert("Geo Added to Local Storage");
+    if (data) {
+      getPinFromAPI();
+      console.log("Geo", data);
+    }
+  } catch (e) {
+    console.log("Error--", e);
+  }
+}
+//----------------------------------------------------------------
+//
+async function getPinFromAPI(iP) {
+  var geo = JSON.parse(localStorage.getItem("Geo"));
+  try {
+    const response = await fetch(
+      `https://api.postalpincode.in/pincode/${geo.postal}`
+    );
+    var data = await response.json();
     localStorage.setItem("Message", JSON.stringify(data[0].Message));
     localStorage.setItem("PO", JSON.stringify(data[0].PostOffice));
-  });
+    // alert("Post Added to Local Storage");
+    if (data) {
+      console.log("Postal:", data[0].PostOffice);
+      document.getElementById("loader-container").style.display = "none";
+    }
+  } catch (e) {
+    console.log("Error--", e);
+  }
+}
+//----------------------------------------------------------------
 
-var msg = JSON.parse(localStorage.getItem("Message"));
-var po = JSON.parse(localStorage.getItem("PO"));
+if (localStorage.getItem("IP")) {
+  iP = JSON.parse(localStorage.getItem("IP"));
+  console.log("IP:", iP);
+} else {
+  getIpFromAPI();
+}
+//------------------------------------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------
+
 //-------------------------------------------------------------
 // Info Page
 var gps = document.getElementById("gps");
@@ -54,6 +89,9 @@ function getInfo() {
 }
 
 function showPosition(position) {
+  var msg = JSON.parse(localStorage.getItem("Message"));
+  var po = JSON.parse(localStorage.getItem("PO"));
+  var geo = JSON.parse(localStorage.getItem("Geo"));
   var lat = position.coords.latitude;
   var lon = position.coords.longitude;
 
@@ -96,6 +134,7 @@ function showPosition(position) {
  `;
 
   showPO(po);
+  //   console.log(po);
 }
 
 //---------------
@@ -136,6 +175,8 @@ function find(obj) {
 //--------------
 document.getElementById("search").addEventListener("input", (ev) => {
   ev.preventDefault();
+
+  var po = JSON.parse(localStorage.getItem("PO"));
 
   var newArr = po.filter(find);
 
