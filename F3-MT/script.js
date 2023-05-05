@@ -18,7 +18,7 @@ async function getIpFromAPI() {
 
 async function getGeoFromAPI(iP) {
   try {
-    const response = await fetch(`https://ipapi.co/${iP}/json/   `);
+    const response = await fetch(`https://ipinfo.io/${iP}?token=4b5ee51896ec8c`);
     var data = await response.json();
     localStorage.setItem("Geo", JSON.stringify(data));
     alert("Geo Added to Local Storage");
