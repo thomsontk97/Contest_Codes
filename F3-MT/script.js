@@ -17,6 +17,7 @@ async function getIpFromAPI() {
       getGeoFromAPI(data.ip);
     }
   } catch (e) {
+    
     console.log("Error--", e);
   }
 }
@@ -35,6 +36,7 @@ async function getGeoFromAPI(iP) {
       console.log("Geo", data);
     }
   } catch (e) {
+    console.log("Error in Fetching IP Info--");
     console.log("Error--", e);
   }
 }
@@ -55,6 +57,7 @@ async function getPinFromAPI(iP) {
       document.getElementById("loader-container").style.display = "none";
     }
   } catch (e) {
+    console.log("Error in Fetching PostOffice Info--");
     console.log("Error--", e);
   }
 }
