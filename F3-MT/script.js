@@ -1,59 +1,30 @@
 var iP;
 
-//-----------------------------------------------------------------
-// Getting IP address from API
-async function getIPFromAPI() {
-  try {
-    const response = await fetch("https://api.ipify.org?format=json");
-    data = await response.json();
+//----------------------------------------------------------------
+//Ip Address
+fetch("https://api.ipify.org?format=json")
+  .then((res) => res.json())
+  .then((data) => {
     localStorage.setItem("IP", JSON.stringify(data.ip));
-    alert(" IP Added to Local Storage");
-    if (data) {
-      console.log("IP", data);
-    }
-  } catch (e) {
-    console.log("Error--", e);
-  }
-}
+  });
 
 iP = JSON.parse(localStorage.getItem("IP"));
 console.log("IP:", iP);
 
 //------------------------------------------------------------------------------------------------------------------------
 // get geo details
-// fetch(`https://ipinfo.io/${iP}?token=4b5ee51896ec8c`)
-//   .then((res) => res.json())
-//   .then((data) => {
-//     localStorage.setItem("Geo", JSON.stringify(data));
-//   });
-async function getGeoFromAPI() {
-  try {
-    const response = await fetch(
-      `https://ipinfo.io/${iP}?token=4b5ee51896ec8c`
-    );
-    data = await response.json();
+fetch(`https://ipinfo.io/${iP}?token=4b5ee51896ec8c`)
+  .then((res) => res.json())
+  .then((data) => {
     localStorage.setItem("Geo", JSON.stringify(data));
-    alert(" Geo Added to Local Storage");
-    if (data) {
-      console.log("Geo", data);
-    }
-  } catch (e) {
-    console.log("Error--", e);
-  }
-}
+  });
 
-// getGeoFromAPI();
 var geo = JSON.parse(localStorage.getItem("Geo"));
 console.log(geo);
 
-async function getData() {
-  const ipA = await getIPFromAPI();
-  const geoD = await getGeoFromAPI();
-}
-
-getData();
 //----------------------------------------------------------
 //pincodes
+
 fetch(`https://api.postalpincode.in/pincode/${geo.postal}`)
   .then((res) => res.json())
   .then((data) => {
