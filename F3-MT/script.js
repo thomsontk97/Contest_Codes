@@ -1,8 +1,3 @@
-// var geo;
-// var iP;
-// var msg;
-// var po;
-//
 async function getIpFromAPI() {
   document.getElementById("loader-container").style.display = "flex";
   console.log("Fetching Data...");
@@ -17,12 +12,10 @@ async function getIpFromAPI() {
       getGeoFromAPI(data.ip);
     }
   } catch (e) {
-    
     console.log("Error--", e);
   }
 }
-//----------------------------------------------------------------
-//
+
 async function getGeoFromAPI(iP) {
   try {
     const response = await fetch(
@@ -41,9 +34,8 @@ async function getGeoFromAPI(iP) {
     alert(e);
   }
 }
-//----------------------------------------------------------------
-//
-async function getPinFromAPI(iP) {
+
+async function getPinFromAPI() {
   var geo = JSON.parse(localStorage.getItem("Geo"));
   try {
     const response = await fetch(
@@ -62,21 +54,16 @@ async function getPinFromAPI(iP) {
     console.log("Error--", e);
   }
 }
-//----------------------------------------------------------------
 
 if (localStorage.getItem("IP")) {
-  iP = JSON.parse(localStorage.getItem("IP"));
+  var iP = JSON.parse(localStorage.getItem("IP"));
   console.log("IP here:", iP);
 } else {
   getIpFromAPI();
 }
-getIpFromAPI();
-//------------------------------------------------------------------------------------------------------------------------
-
-//----------------------------------------------------------
 
 //-------------------------------------------------------------
-// Info Page
+
 var gps = document.getElementById("gps");
 var map = document.getElementById("map");
 var date_time = document.getElementById("date-time");
@@ -101,42 +88,42 @@ function showPosition(position) {
   var lon = position.coords.longitude;
 
   gps.innerHTML = `
-                <div class="line-1">
-                <div class ="gps-info"><strong>Lat: </strong>${lat}</div>
-                <div class ="gps-info"><strong>Long: </strong>${lon}</div>
-                </div>
-
-                <div class = "line-2">
-                <div class ="gps-info"><strong>City: </strong>${geo.city}</div>
-                <div class ="gps-info"><strong>Region: </strong>${geo.region}</div>
-                
-                </div>
-                
-                <div class = "line-2">
-                <div class ="gps-info"><strong>Organisation: </strong>${geo.org}</div>
-                <div class ="gps-info"><strong>Hostname: </strong>${geo.ip}</div>
-                </div>
- `;
+                  <div class="line-1">
+                  <div class ="gps-info"><strong>Lat: </strong>${lat}</div>
+                  <div class ="gps-info"><strong>Long: </strong>${lon}</div>
+                  </div>
+  
+                  <div class = "line-2">
+                  <div class ="gps-info"><strong>City: </strong>${geo.city}</div>
+                  <div class ="gps-info"><strong>Region: </strong>${geo.region}</div>
+                  
+                  </div>
+                  
+                  <div class = "line-2">
+                  <div class ="gps-info"><strong>Organisation: </strong>${geo.org}</div>
+                  <div class ="gps-info"><strong>Hostname: </strong>${geo.ip}</div>
+                  </div>
+   `;
 
   map.innerHTML = `
-  <iframe src="https://maps.google.com/maps?q=${lat},${lon}&&output=embed" width="1600" height="600" frameborder="0" style="border:0"></iframe>
-
- `;
+    <iframe src="https://maps.google.com/maps?q=${lat},${lon}&&output=embed" width="1600" height="600" frameborder="0" style="border:0"></iframe>
+  
+   `;
 
   date_time.innerHTML = `
-                    <div class = "td-info"><strong>Time Zone: </strong>${
-                      geo.timezone
-                    }</div>
-                    <div class = "td-info"><strong>Date and Time: </strong>${new Date().toLocaleString(
-                      "en-US",
-                      { timeZone: `${geo.timezone}` }
-                    )}</div>
-                    <div class = "td-info"><strong>Pincode: </strong>${
-                      geo.postal
-                    }</div>
-                    <div class = "td-info"><strong>Message:</strong>${msg}</div>
-
- `;
+                      <div class = "td-info"><strong>Time Zone: </strong>${
+                        geo.timezone
+                      }</div>
+                      <div class = "td-info"><strong>Date and Time: </strong>${new Date().toLocaleString(
+                        "en-US",
+                        { timeZone: `${geo.timezone}` }
+                      )}</div>
+                      <div class = "td-info"><strong>Pincode: </strong>${
+                        geo.postal
+                      }</div>
+                      <div class = "td-info"><strong>Message:</strong>${msg}</div>
+  
+   `;
 
   showPO(po);
   //   console.log(po);
@@ -147,14 +134,14 @@ function showPO(arr) {
   let innerHTML = "";
   arr.forEach((office) => {
     innerHTML += `
-                                            <div class="po-box">
-                                            <div>Name: ${office.Name}</div>
-                                            <div>Branch Type: ${office.BranchType}</div>
-                                            <div>Delievery Status: ${office.DeliveryStatus}</div>
-                                            <div>District: ${office.District}</div>
-                                            <div>Division: ${office.Division}</div>
-                                            </div>
-                            `;
+                                              <div class="po-box">
+                                              <div>Name: ${office.Name}</div>
+                                              <div>Branch Type: ${office.BranchType}</div>
+                                              <div>Delievery Status: ${office.DeliveryStatus}</div>
+                                              <div>District: ${office.District}</div>
+                                              <div>Division: ${office.Division}</div>
+                                              </div>
+                              `;
   });
   poffices.innerHTML = innerHTML;
 }
