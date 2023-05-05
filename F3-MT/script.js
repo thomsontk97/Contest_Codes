@@ -18,9 +18,7 @@ async function getIpFromAPI() {
 
 async function getGeoFromAPI(iP) {
   try {
-    const response = await fetch(
-      `https://ipinfo.io/${iP}?token=4b5ee51896ec8c`
-    );
+    const response = await fetch(`http://ip-api.com/json/${iP}`);
     var data = await response.json();
     localStorage.setItem("Geo", JSON.stringify(data));
     alert("Geo Added to Local Storage");
@@ -39,7 +37,7 @@ async function getPinFromAPI() {
   var geo = JSON.parse(localStorage.getItem("Geo"));
   try {
     const response = await fetch(
-      `https://api.postalpincode.in/pincode/${geo.postal}`
+      `https://api.postalpincode.in/pincode/${geo.zip}`
     );
     var data = await response.json();
     localStorage.setItem("Message", JSON.stringify(data[0].Message));
@@ -101,7 +99,7 @@ function showPosition(position) {
                   
                   <div class = "line-2">
                   <div class ="gps-info"><strong>Organisation: </strong>${geo.org}</div>
-                  <div class ="gps-info"><strong>Hostname: </strong>${geo.ip}</div>
+                  <div class ="gps-info"><strong>Hostname: </strong>${geo.query}</div>
                   </div>
    `;
 
