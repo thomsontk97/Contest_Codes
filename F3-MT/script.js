@@ -1,7 +1,7 @@
 // var geo;
 // var iP;
-var msg;
-var po;
+// var msg;
+// var po;
 //
 async function getIpFromAPI() {
   document.getElementById("loader-container").style.display = "flex";
@@ -65,7 +65,7 @@ async function getPinFromAPI(iP) {
 
 if (localStorage.getItem("IP")) {
   iP = JSON.parse(localStorage.getItem("IP"));
-  console.log("IP:", iP);
+  console.log("IP here:", iP);
 } else {
   getIpFromAPI();
 }
