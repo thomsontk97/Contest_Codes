@@ -2,32 +2,23 @@ var iP;
 
 //----------------------------------------------------------------
 //Ip Address
-try {
-  fetch("https://api.ipify.org?format=json")
-    .then((res) => res.json())
-    .then((data) => {
-      localStorage.setItem("IP", JSON.stringify(data.ip));
-    });
-} catch (err) {
-  console.log(err);
-  alert(err);
-}
+fetch("https://api.ipify.org?format=json")
+  .then((res) => res.json())
+  .then((data) => {
+    localStorage.setItem("IP", JSON.stringify(data.ip));
+  });
 
 iP = JSON.parse(localStorage.getItem("IP"));
 console.log("IP:", iP);
 
 //------------------------------------------------------------------------------------------------------------------------
 // get geo details
-try {
-  fetch(`https://ipinfo.io/${iP}?token=4b5ee51896ec8c`)
-    .then((res) => res.json())
-    .then((data) => {
-      localStorage.setItem("Geo", JSON.stringify(data));
-    });
-} catch (err) {
-  console.log(err);
-  alert(err);
-}
+fetch(`https://ipinfo.io/${iP}?token=4b5ee51896ec8c`)
+  .then((res) => res.json())
+  .then((data) => {
+    localStorage.setItem("Geo", JSON.stringify(data));
+  });
+
 var geo = JSON.parse(localStorage.getItem("Geo"));
 console.log(geo);
 
