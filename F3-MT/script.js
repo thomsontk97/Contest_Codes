@@ -38,6 +38,7 @@ async function getGeoFromAPI(iP) {
   } catch (e) {
     console.log("Error in Fetching IP Info--");
     console.log("Error--", e);
+    alert(e);
   }
 }
 //----------------------------------------------------------------
