@@ -11,7 +11,7 @@ async function getIpFromAPI() {
     const response = await fetch("https://api.ipify.org?format=json");
     var data = await response.json();
     localStorage.setItem("IP", JSON.stringify(data.ip));
-    // alert("IP Added to Local Storage");
+    alert("IP Added to Local Storage");
     if (data) {
       console.log("IP", data.ip);
       getGeoFromAPI(data.ip);
@@ -29,7 +29,7 @@ async function getGeoFromAPI(iP) {
     );
     var data = await response.json();
     localStorage.setItem("Geo", JSON.stringify(data));
-    // alert("Geo Added to Local Storage");
+    alert("Geo Added to Local Storage");
     if (data) {
       getPinFromAPI();
       console.log("Geo", data);
@@ -49,7 +49,7 @@ async function getPinFromAPI(iP) {
     var data = await response.json();
     localStorage.setItem("Message", JSON.stringify(data[0].Message));
     localStorage.setItem("PO", JSON.stringify(data[0].PostOffice));
-    // alert("Post Added to Local Storage");
+    alert("Post Added to Local Storage");
     if (data) {
       console.log("Postal:", data[0].PostOffice);
       document.getElementById("loader-container").style.display = "none";
